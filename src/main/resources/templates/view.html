@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>View Blog Post</title>
+</head>
+<body>
+<h1>View Blog Post</h1>
+<h2>Title: <span th:text="${blogPost.title}"></span></h2>
+<p>Content: <span th:text="${blogPost.content}"></span></p>
+<p>Author: <span th:text="${blogPost.author}"></span></p>
+<a th:href="@{/posts/{id}/delete/{id}(id=${blogPost.id})}">Delete</a>
+
+
+<a href="/posts">Back to All Blog Posts</a>
+</body>
+</html>

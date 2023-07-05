@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Create Blog Post</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #DA667B;
+    }
+    .container {
+      background-color: #C9B79C;
+      margin-top: 5%;
+      margin-bottom: 6%;
+    }
+    .card {
+      background-color: #F1E0C5;
+      margin-top: 5%;
+      margin-bottom: 5%;
+    }
+    .btn {
+      background-color: #71816D;
+    }
+    .btn:hover {
+      background-color: #F1E0C5;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1 class="text-center mt-5">What's on your mind?</h1>
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <div class="card">
+        <div class="card-body">
+          <form th:action="@{/posts}" method="post" th:object="${blogPost}">
+            <div class="form-group">
+              <label for="title">Title:</label>
+              <input type="text" id="title" name="title" th:field="*{title}" class="form-control" required>
+              <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+              <label for="content">Content:</label>
+              <textarea id="content" name="content" class="form-control" required th:field="*{content}"></textarea>
+              <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+              <label for="author">Author:</label>
+              <input type="text" id="author" name="author" class="form-control" required th:field="*{author}">
+              <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="text-danger"></span>
+            </div>
+            <button type="submit" class="btn btn-primary">Create</button>
+            <a th:href="@{/posts}" class="btn btn-secondary">Cancel</a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

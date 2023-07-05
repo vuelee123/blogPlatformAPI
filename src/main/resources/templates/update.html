@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Blog Post</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #DA667B;
+    }
+    .container {
+      background-color: #C9B79C;
+      padding-bottom: 2%;
+      margin-bottom: 2%;
+    }
+    .card {
+      background-color: #F1E0C5;
+    }
+    .btn {
+      background-color: #71816D;
+    }
+    .btn:hover {
+      background-color: #F1E0C5;
+    }
+    .row {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1 class="text-center mt-5">Edit Blog Post</h1>
+  <div class="row">
+    <div class="card card-mb">
+      <div class="card-body">
+        <form th:action="@{/posts/{id}/update(id=${blogPost.id})}" th:object="${blogPost}" method="post">
+          <input type="hidden" name="_method" value="PUT">
+          <div class="form-group">
+            <label for="title">Title:</label>
+            <input type="text" id="title" name="title" th:field="*{title}" class="form-control" required>
+            <span th:if="${#fields.hasErrors('title')}" th:errors="*{title}" class="text-danger"></span>
+          </div>
+          <div class="form-group">
+            <label for="content">Content:</label>
+            <textarea id="content" name="content" th:field="*{content}" class="form-control" required></textarea>
+            <span th:if="${#fields.hasErrors('content')}" th:errors="*{content}" class="text-danger"></span>
+          </div>
+          <div class="form-group">
+            <label for="author">Author:</label>
+            <input type="text" id="author" name="author" th:field="*{author}" class="form-control" required>
+            <span th:if="${#fields.hasErrors('author')}" th:errors="*{author}" class="text-danger"></span>
+          </div>
+          <button type="submit" class="btn btn-primary">Update</button>
+          <a th:href="@{/posts}" class="btn btn-secondary">Cancel</a>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

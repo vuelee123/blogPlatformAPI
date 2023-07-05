@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Blog Posts</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      background-color: #DA667B;
+    }
+    .text-center {
+      margin-top: 10%;
+    }
+    .container {
+      background-color: #C9B79C;
+      margin-top: 6%;
+    }
+    .card {
+      background-color: #F1E0C5;
+      margin-top: 10%;
+      padding-bottom: 5%;
+    }
+    .btn {
+      background-color: #71816D;
+      margin-bottom: 5%;
+
+    }
+    .btn:hover {
+      background-color: #F1E0C5;
+    }
+    .btn1 {
+      display: flex;
+      justify-content: center;
+      justify-content: space-around;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <h1 class="text-center mt-5">All Blog Posts</h1>
+  <div class="row">
+    <div class="col-md-8 offset-md-2">
+      <div class="row">
+        <div th:each="blogPost : ${blogPosts}" class="col-md-4 mb-4">
+          <div class="card">
+            <div class="card-body">
+              <h2 th:text="${blogPost.title}"></h2>
+              <p th:text="${blogPost.content}"></p>
+              <p>Author: <span th:text="${blogPost.author}"></span></p>
+            </div>
+            <div class="card-footer text-center">
+              <a th:href="@{/posts/{id}/edit(id=${blogPost.id})}" class="btn btn-primary">Edit</a>
+              <a th:href="@{/posts/{id}/delete(id=${blogPost.id})}" class="btn btn-primary">Delete</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <form action="/" method="get" class="btn1">
+    <button type="submit" class="btn btn-primary">Home</button>
+    <a href="/posts/create" class="btn btn-primary">Create a New Blog Post</a>
+  </form>
+</div>
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
